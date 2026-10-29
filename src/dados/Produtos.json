@@ -16,5 +16,11 @@
     "nome": "cama",
     "preco": 10.5,
     "quantidadeEmEstoque": 67
+  },
+  {
+    "id": "261eac50-466d-41eb-8a29-bd5a57481161",
+    "nome": "Arroz",
+    "preco": 5.0,
+    "quantidadeEmEstoque": 200
   }
 ]

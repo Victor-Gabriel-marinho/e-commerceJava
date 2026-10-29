@@ -1,0 +1,20 @@
+[
+  {
+    "id": "cf41bcc3-36e5-4e0f-9440-75f639f4f02d",
+    "nome": "arroz",
+    "preco": 5.0,
+    "quantidadeEmEstoque": 100
+  },
+  {
+    "id": "a65f4178-32ca-4064-8fee-883c5196bc0f",
+    "nome": "ventilador",
+    "preco": 100.0,
+    "quantidadeEmEstoque": 0
+  },
+  {
+    "id": "22141c9d-0ea8-49c1-9958-164880134fe1",
+    "nome": "cama",
+    "preco": 10.5,
+    "quantidadeEmEstoque": 67
+  }
+]

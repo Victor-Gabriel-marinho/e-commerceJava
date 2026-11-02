@@ -5,7 +5,7 @@ import repository.ProdutoRepository;
 import service.CompraService;
 import service.ProdutoService;
 import util.LeitorEntrada;
-
+import Menu.MenuCarrinho;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -44,15 +44,7 @@ public class Main {
 
                 String comprador = entrada.lerTexto("Seu nome: ");
 
-                // O MenuComprador (carrinho) deve montar um Map<String,Integer> (idProduto -> quantidade)
-                // e chamar: menuCompra.finalizarCompra(comprador, itens);
-
-                // --- TESTE TEMPORÁRIO (apague quando o carrinho existir) ---
-                // java.util.Map<String,Integer> teste = new java.util.LinkedHashMap<>();
-                // teste.put(produtoService.listar().get(0).getId(), 2);
-                // menuCompra.finalizarCompra(comprador, teste);
-
-                menuCompra.exibirHistorico(comprador);
+                new MenuCarrinho(produtoService, menuCompra, entrada, comprador).exibir();
                 break;
             }
             case (0): {

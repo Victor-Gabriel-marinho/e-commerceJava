@@ -1,9 +1,14 @@
 package gui;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Path2D;
+
+import javax.swing.Icon;
 
 /** Ícones vetoriais desenhados em Java2D (sem arquivos de imagem). Grade de 24x24. */
 public final class Icones {

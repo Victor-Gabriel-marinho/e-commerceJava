@@ -1,11 +1,14 @@
 package gui;
 
-import model.FormaPagamento;
-
-import java.awt.*;
-import java.text.Normalizer;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.text.NumberFormat;
+import java.text.Normalizer;
 import java.util.Locale;
+
+import model.FormaPagamento;
 
 /** Cores, fontes e formatações compartilhadas por toda a interface (visual inspirado no Mercado Livre). */
 public final class Tema {
@@ -24,11 +27,6 @@ public final class Tema {
     public static final Color LARANJA     = new Color(0xE8590C);
     public static final Color VERMELHO    = new Color(0xF23D4F);
     public static final Color LOGO        = new Color(0x2D3277);
-
-    private static final Color[] PALETA = {
-            new Color(0x3483FA), new Color(0x00A650), new Color(0xFF7733),
-            new Color(0x8E44AD), new Color(0xE91E63), new Color(0x16A085)
-    };
 
     private static final NumberFormat MOEDA =
             NumberFormat.getCurrencyInstance(Locale.forLanguageTag("pt-BR"));
@@ -50,11 +48,6 @@ public final class Tema {
     public static String normalizar(String texto) {
         String n = Normalizer.normalize(texto == null ? "" : texto, Normalizer.Form.NFD);
         return n.replaceAll("\\p{M}", "").toLowerCase(Locale.ROOT).trim();
-    }
-
-    /** Cor estável para o produto (usada no placeholder de imagem). */
-    public static Color corDoProduto(String nome) {
-        return PALETA[Math.abs(normalizar(nome).hashCode() % PALETA.length)];
     }
 
     public static void antialias(Graphics2D g) {

@@ -1,14 +1,15 @@
 package gui;
 
+import java.awt.*;
+import java.util.function.Consumer;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import model.CartaoDebito;
 import model.Pix;
 import model.Produto;
 import service.ProdutoService;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
-import java.util.function.Consumer;
 
 /** Página inicial: banner promocional + grade de produtos (com filtro de busca). */
 public class PainelProdutos extends JScrollPane {

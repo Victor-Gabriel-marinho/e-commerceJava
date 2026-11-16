@@ -1,17 +1,18 @@
 package gui;
 
-import exception.DadosInvalidosException;
-import exception.PersistenciaException;
-import exception.ProdutoInexistenteException;
-import model.Produto;
-import service.ProdutoService;
+import java.awt.*;
+import java.util.List;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
-import java.awt.*;
-import java.util.List;
+
+import exception.DadosInvalidosException;
+import exception.PersistenciaException;
+import exception.ProdutoInexistenteException;
+import model.Produto;
+import service.ProdutoService;
 
 /** Área do vendedor/administrador: cadastrar, editar e remover produtos (equivale ao MenuAdministrador). */
 public class DialogoVendedor extends JDialog {
@@ -23,6 +24,7 @@ public class DialogoVendedor extends JDialog {
     public DialogoVendedor(Window dono, ProdutoService servico) {
         super(dono, "Área do vendedor", ModalityType.APPLICATION_MODAL);
         this.servico = servico;
+        modelo.recarregar();
 
         JPanel raiz = new JPanel(new BorderLayout(0, 14));
         raiz.setBackground(Tema.FUNDO);
@@ -145,7 +147,7 @@ public class DialogoVendedor extends JDialog {
 
     private class ModeloProdutos extends AbstractTableModel {
         private final String[] colunas = {"Produto", "Preço", "Estoque"};
-        private List<Produto> dados = servico.listar();
+        private List<Produto> dados = new java.util.ArrayList<>();   // preenchido por recarregar() no construtor
 
         void recarregar() { dados = servico.listar(); fireTableDataChanged(); }
         Produto get(int linha) { return dados.get(linha); }

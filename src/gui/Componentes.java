@@ -1,11 +1,12 @@
 package gui;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 /** Componentes Swing customizados que dão a identidade visual da loja. */
 public final class Componentes {
@@ -125,13 +126,13 @@ public final class Componentes {
     }
 
     // =========================================================== MINIATURA
-    /** Placeholder de imagem: círculo colorido com a inicial do produto. */
+    /** Imagem ilustrativa do produto (desenhada em Java2D) com o aviso "imagens apenas ilustrativas". */
     public static class Miniatura extends JPanel {
-        private final String nome;
+        private final Ilustracoes.Tipo tipo;
         private final int raio;
 
         public Miniatura(String nome, int largura, int altura, int raio) {
-            this.nome = nome == null ? "?" : nome;
+            this.tipo = Ilustracoes.tipoDe(nome);
             this.raio = raio;
             setOpaque(false);
             setPreferredSize(new Dimension(largura, altura));
@@ -140,19 +141,32 @@ public final class Componentes {
         @Override protected void paintComponent(Graphics g) {
             Graphics2D g2 = (Graphics2D) g.create();
             Tema.antialias(g2);
-            g2.setColor(new Color(0xF4F4F4));
-            g2.fillRoundRect(0, 0, getWidth(), getHeight(), raio, raio);
+            int w = getWidth(), h = getHeight();
 
-            int d = (int) (Math.min(getWidth(), getHeight()) * 0.55);
-            int x = (getWidth() - d) / 2, y = (getHeight() - d) / 2;
-            g2.setColor(Tema.corDoProduto(nome));
-            g2.fillOval(x, y, d, d);
+            // fundo creme em degradê suave
+            Shape forma = new RoundRectangle2D.Float(0, 0, w, h, raio, raio);
+            g2.setPaint(new GradientPaint(0, 0, new Color(0xFFF8EC), 0, h, new Color(0xFBE9CC)));
+            g2.fill(forma);
 
-            String inicial = nome.trim().isEmpty() ? "?" : nome.trim().substring(0, 1).toUpperCase();
-            g2.setColor(Color.WHITE);
-            g2.setFont(Tema.fonte(Font.BOLD, d * 0.5f));
+            // aviso (texto curto quando a imagem é pequena)
+            boolean pequena = w < 120;
+            String aviso = pequena ? "Ilustrativa" : "Imagens apenas ilustrativas";
+            float tamFonte = pequena ? Math.max(7f, w / 9f) : Math.max(9f, Math.min(11f, w / 22f));
+            g2.setFont(Tema.fonte(Font.PLAIN, tamFonte));
             FontMetrics fm = g2.getFontMetrics();
-            g2.drawString(inicial, x + (d - fm.stringWidth(inicial)) / 2, y + (d - fm.getHeight()) / 2 + fm.getAscent());
+            int larguraAviso = fm.stringWidth(aviso) + 12, alturaAviso = fm.getHeight() + 2;
+
+            // ilustração centralizada na área acima do aviso
+            double areaAltura = h - alturaAviso - 6;
+            double lado = Math.min(w, areaAltura) * 0.86;
+            Ilustracoes.desenhar(g2, tipo, w / 2.0, areaAltura / 2.0 + 3, lado);
+
+            // pílula translúcida com o aviso, no canto inferior
+            int x = (w - larguraAviso) / 2, y = h - alturaAviso - 5;
+            g2.setColor(new Color(255, 255, 255, 190));
+            g2.fillRoundRect(x, y, larguraAviso, alturaAviso, alturaAviso, alturaAviso);
+            g2.setColor(new Color(0x8A6D3B));
+            g2.drawString(aviso, x + 6, y + (alturaAviso - fm.getHeight()) / 2 + fm.getAscent());
             g2.dispose();
         }
     }

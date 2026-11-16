@@ -1,5 +1,10 @@
 package gui;
 
+import java.awt.*;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import exception.DadosInvalidosException;
 import exception.EstoqueInsuficienteException;
 import exception.ProdutoInexistenteException;
@@ -10,14 +15,13 @@ import model.Produto;
 import service.CompraService;
 import service.ProdutoService;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
-
 /** Janela principal da loja: cabeçalho amarelo (busca, navegação, carrinho) + páginas. */
 public class TelaLoja extends JFrame {
 
     private static final String LOJA = "loja", CARRINHO = "carrinho", HISTORICO = "historico";
+
+    /** Nome exibido no cabeçalho e no título da janela (troque aqui pelo nome da sua padaria). */
+    private static final String NOME_LOJA = "Padaria";
 
     private final ProdutoService produtoService;
     private final CompraService compraService;
@@ -36,7 +40,7 @@ public class TelaLoja extends JFrame {
     private final Componentes.Toast toast = new Componentes.Toast();
 
     public TelaLoja(ProdutoService produtoService, CompraService compraService) {
-        super("E-Commerce");
+        super(NOME_LOJA);
         this.produtoService = produtoService;
         this.compraService = compraService;
 
@@ -74,7 +78,7 @@ public class TelaLoja extends JFrame {
         c.anchor = GridBagConstraints.CENTER;
 
         // Logo
-        JButton logo = new JButton("e-commerce", Icones.carrinho(30, Tema.LOGO));
+        JButton logo = new JButton(NOME_LOJA, Icones.carrinho(30, Tema.LOGO));
         logo.setFont(Tema.fonte(Font.BOLD | Font.ITALIC, 24f));
         logo.setForeground(Tema.LOGO);
         logo.setIconTextGap(8);
@@ -91,7 +95,7 @@ public class TelaLoja extends JFrame {
         // Busca
         Componentes.Painel busca = new Componentes.Painel(new BorderLayout(), 6);
         busca.setBorder(new EmptyBorder(0, 12, 0, 0));
-        campoBusca = new Componentes.CampoHint("Buscar produtos");
+        campoBusca = new Componentes.CampoHint("Buscar pães, bolos, cafés e mais");
         campoBusca.addActionListener(e -> buscar());
         JButton lupa = new JButton(Icones.lupa(20, new Color(0x666666)));
         lupa.setContentAreaFilled(false);

@@ -1,26 +1,92 @@
 [
   {
-    "id": "cf41bcc3-36e5-4e0f-9440-75f639f4f02d",
-    "nome": "arroz",
-    "preco": 5.0,
+    "id": "6f74d7fe-9159-49e1-a9a5-95f5991f5ffe",
+    "nome": "Pão francês",
+    "preco": 0.9,
+    "quantidadeEmEstoque": 149
+  },
+  {
+    "id": "e001cebb-2950-4d6f-8e93-2647bff44f1b",
+    "nome": "Pão de forma",
+    "preco": 8.9,
+    "quantidadeEmEstoque": 30
+  },
+  {
+    "id": "b2d680e8-2b08-405c-bf1c-714ea679b85b",
+    "nome": "Croissant",
+    "preco": 6.5,
+    "quantidadeEmEstoque": 25
+  },
+  {
+    "id": "49310138-e678-41a8-88cf-baf1b0cf4f63",
+    "nome": "Pão de queijo",
+    "preco": 3.5,
+    "quantidadeEmEstoque": 60
+  },
+  {
+    "id": "488e4a2d-409d-4c66-813d-11f221c27a78",
+    "nome": "Sonho de creme",
+    "preco": 5.5,
+    "quantidadeEmEstoque": 20
+  },
+  {
+    "id": "b65f4829-4a6d-46c1-b348-5ca8bbe5a9f9",
+    "nome": "Bolo de chocolate (fatia)",
+    "preco": 9.0,
+    "quantidadeEmEstoque": 4
+  },
+  {
+    "id": "a89247b0-288e-4b3e-bf44-e83e2c92d5ef",
+    "nome": "Bolo de cenoura (fatia)",
+    "preco": 8.5,
+    "quantidadeEmEstoque": 18
+  },
+  {
+    "id": "0bf16128-7654-48a4-8f34-8fd339b8b804",
+    "nome": "Coxinha",
+    "preco": 7.0,
+    "quantidadeEmEstoque": 35
+  },
+  {
+    "id": "cfff7f05-7d1a-49f2-917a-635f763eca6e",
+    "nome": "Cookie de chocolate",
+    "preco": 6.0,
+    "quantidadeEmEstoque": 22
+  },
+  {
+    "id": "f6735c6f-2efd-4b99-92ff-75de92c0f445",
+    "nome": "Café expresso",
+    "preco": 4.5,
     "quantidadeEmEstoque": 100
   },
   {
-    "id": "a65f4178-32ca-4064-8fee-883c5196bc0f",
-    "nome": "ventilador",
-    "preco": 100.0,
+    "id": "ad32e32b-3723-47e2-bb26-c4b588fea48d",
+    "nome": "Suco de laranja",
+    "preco": 8.0,
+    "quantidadeEmEstoque": 15
+  },
+  {
+    "id": "a66e65df-1f27-4444-b56c-68c6ba625460",
+    "nome": "Leite integral 1L",
+    "preco": 6.2,
+    "quantidadeEmEstoque": 40
+  },
+  {
+    "id": "4f51d0be-c915-4d97-b2b5-d91c8d1e209d",
+    "nome": "Queijo minas (200g)",
+    "preco": 14.9,
+    "quantidadeEmEstoque": 30
+  },
+  {
+    "id": "c6c7997b-b52e-4c0a-9145-1ef981017650",
+    "nome": "Torta de limão (fatia)",
+    "preco": 10.0,
     "quantidadeEmEstoque": 0
   },
   {
-    "id": "22141c9d-0ea8-49c1-9958-164880134fe1",
-    "nome": "cama",
-    "preco": 10.5,
-    "quantidadeEmEstoque": 67
-  },
-  {
-    "id": "261eac50-466d-41eb-8a29-bd5a57481161",
-    "nome": "Arroz",
-    "preco": 5.0,
-    "quantidadeEmEstoque": 200
+    "id": "34406b77-2635-4cda-bea7-dcf8d7b4e444",
+    "nome": "celular",
+    "preco": 1000.0,
+    "quantidadeEmEstoque": 9
   }
 ]

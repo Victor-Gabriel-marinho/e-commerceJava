@@ -1,16 +1,17 @@
 package gui;
 
-import model.Compra;
-import model.ItemCompra;
-import service.CompraService;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import model.Compra;
+import model.ItemCompra;
+import service.CompraService;
 
 /** "Minhas compras": histórico do comprador, da mais recente para a mais antiga. */
 public class PainelHistorico extends JScrollPane {

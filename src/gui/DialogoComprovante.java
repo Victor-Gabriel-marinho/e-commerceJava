@@ -1,13 +1,14 @@
 package gui;
 
-import model.Compra;
-import model.ItemCompra;
+import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+
+import model.Compra;
+import model.ItemCompra;
 
 /** Comprovante de uma compra (usado após o pagamento e no histórico). */
 public final class DialogoComprovante {

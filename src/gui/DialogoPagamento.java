@@ -1,12 +1,22 @@
 package gui;
 
-import exception.*;
-import model.*;
-import service.CompraService;
+import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
+
+import exception.DadosInvalidosException;
+import exception.EstoqueInsuficienteException;
+import exception.PagamentoRecusadoException;
+import exception.PersistenciaException;
+import exception.ProdutoInexistenteException;
+import model.CartaoCredito;
+import model.CartaoDebito;
+import model.Carrinho;
+import model.Compra;
+import model.FormaPagamento;
+import model.Pix;
+import service.CompraService;
 
 /** Checkout: escolha da forma de pagamento, dados e resumo com desconto em tempo real. */
 public class DialogoPagamento extends JDialog {

@@ -1,11 +1,12 @@
 package gui;
 
-import model.Pix;
-import model.Produto;
+import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
+
+import model.Pix;
+import model.Produto;
 
 /** Detalhe do produto: imagem grande, preço, quantidade e ações de compra. */
 public class DialogoProduto extends JDialog {

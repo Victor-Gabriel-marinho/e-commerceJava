@@ -1,14 +1,15 @@
 package gui;
 
-import model.Pix;
-import model.Produto;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.function.Consumer;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import model.Pix;
+import model.Produto;
 
 /** Card de produto da vitrine (imagem, preço, preço no Pix, estoque e botão de compra). */
 public class CartaoProduto extends Componentes.Painel {

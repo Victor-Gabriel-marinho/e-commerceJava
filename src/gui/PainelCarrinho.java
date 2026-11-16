@@ -1,5 +1,10 @@
 package gui;
 
+import java.awt.*;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import exception.DadosInvalidosException;
 import exception.EstoqueInsuficienteException;
 import exception.ProdutoInexistenteException;
@@ -7,10 +12,6 @@ import model.Carrinho;
 import model.CartaoDebito;
 import model.ItemCarrinho;
 import model.Pix;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
 
 /** Página do carrinho: lista de itens à esquerda e resumo da compra à direita. */
 public class PainelCarrinho extends JScrollPane {

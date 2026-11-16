@@ -21,7 +21,7 @@ public class CartaoProduto extends Componentes.Painel {
         int estoque = produto.getQuantidadeEmEstoque();
         boolean esgotado = estoque <= 0;
 
-        add(new Componentes.Miniatura(produto.getNome(), 100, 160, 0), BorderLayout.NORTH);
+        add(new Componentes.Miniatura(produto, 100, 160, 0), BorderLayout.NORTH);
 
         JPanel info = new JPanel();
         info.setOpaque(false);

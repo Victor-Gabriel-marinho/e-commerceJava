@@ -126,21 +126,103 @@ public final class Componentes {
     }
 
     // =========================================================== MINIATURA
-    /** Imagem ilustrativa do produto (desenhada em Java2D) com o aviso "imagens apenas ilustrativas". */
+    /**
+     * Imagem do produto. Se o vendedor enviou uma foto, ela é exibida; caso contrário usa uma
+     * ilustração genérica desenhada em Java2D, com o aviso "imagens apenas ilustrativas".
+     */
     public static class Miniatura extends JPanel {
-        private final Ilustracoes.Tipo tipo;
-        private final int raio;
+        private static final java.util.Map<String, java.awt.image.BufferedImage> CACHE = new java.util.HashMap<>();
 
+        private final Ilustracoes.Tipo tipo;
+        private final java.awt.image.BufferedImage foto;     // null = ilustração genérica
+        private final int raio;
+        private java.awt.image.BufferedImage fotoEscalada;
+        private int escaladaL, escaladaA;
+
+        public Miniatura(model.Produto produto, int largura, int altura, int raio) {
+            this(produto.getNome(), carregarFoto(produto.getImagem()), largura, altura, raio);
+        }
+
+        /** Só a ilustração genérica (usado quando ainda não há produto, ex.: prévia). */
         public Miniatura(String nome, int largura, int altura, int raio) {
+            this(nome, null, largura, altura, raio);
+        }
+
+        private Miniatura(String nome, java.awt.image.BufferedImage foto, int largura, int altura, int raio) {
             this.tipo = Ilustracoes.tipoDe(nome);
+            this.foto = foto;
             this.raio = raio;
             setOpaque(false);
             setPreferredSize(new Dimension(largura, altura));
         }
 
+        /** Lê a foto do disco (com cache). Arquivo ausente ou ilegível = null (cai na ilustração). */
+        private static java.awt.image.BufferedImage carregarFoto(String caminho) {
+            if (caminho == null) return null;
+            java.io.File arquivo = new java.io.File(caminho);
+            if (!arquivo.isFile()) return null;
+            String chave = caminho + "@" + arquivo.lastModified();   // trocar a imagem invalida o cache
+            synchronized (CACHE) {
+                if (!CACHE.containsKey(chave)) {
+                    try {
+                        CACHE.put(chave, javax.imageio.ImageIO.read(arquivo));
+                    } catch (java.io.IOException | RuntimeException e) {
+                        CACHE.put(chave, null);
+                    }
+                }
+                return CACHE.get(chave);
+            }
+        }
+
         @Override protected void paintComponent(Graphics g) {
             Graphics2D g2 = (Graphics2D) g.create();
             Tema.antialias(g2);
+            if (foto != null) pintarFoto(g2); else pintarIlustracao(g2);
+            g2.dispose();
+        }
+
+        private void pintarFoto(Graphics2D g2) {
+            int w = getWidth(), h = getHeight();
+            Shape forma = new RoundRectangle2D.Float(0, 0, w, h, raio, raio);
+            g2.setColor(Color.WHITE);
+            g2.fill(forma);
+            g2.setColor(new Color(0xEDEDED));
+            g2.setStroke(new BasicStroke(1f));
+            g2.draw(new RoundRectangle2D.Float(0.5f, 0.5f, w - 1, h - 1, raio, raio));
+
+            // "contain": a foto inteira aparece, centralizada, sem cortes
+            int margem = Math.max(4, Math.min(w, h) / 24);
+            double escala = Math.min((w - 2.0 * margem) / foto.getWidth(), (h - 2.0 * margem) / foto.getHeight());
+            int fw = Math.max(1, (int) Math.round(foto.getWidth() * escala));
+            int fh = Math.max(1, (int) Math.round(foto.getHeight() * escala));
+            if (fotoEscalada == null || escaladaL != fw || escaladaA != fh) {
+                fotoEscalada = redimensionar(foto, fw, fh);
+                escaladaL = fw;
+                escaladaA = fh;
+            }
+            g2.clip(forma);
+            g2.drawImage(fotoEscalada, (w - fw) / 2, (h - fh) / 2, null);
+        }
+
+        private static java.awt.image.BufferedImage redimensionar(java.awt.image.BufferedImage origem, int w, int h) {
+            java.awt.image.BufferedImage atual = origem;
+            while (atual.getWidth() / 2 > w && atual.getHeight() / 2 > h) {   // reduz em etapas p/ manter nitidez
+                atual = passo(atual, atual.getWidth() / 2, atual.getHeight() / 2);
+            }
+            return passo(atual, w, h);
+        }
+
+        private static java.awt.image.BufferedImage passo(java.awt.image.BufferedImage o, int w, int h) {
+            java.awt.image.BufferedImage d = new java.awt.image.BufferedImage(w, h, java.awt.image.BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g = d.createGraphics();
+            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+            g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            g.drawImage(o, 0, 0, w, h, null);
+            g.dispose();
+            return d;
+        }
+
+        private void pintarIlustracao(Graphics2D g2) {
             int w = getWidth(), h = getHeight();
 
             // fundo creme em degradê suave
@@ -167,7 +249,6 @@ public final class Componentes {
             g2.fillRoundRect(x, y, larguraAviso, alturaAviso, alturaAviso, alturaAviso);
             g2.setColor(new Color(0x8A6D3B));
             g2.drawString(aviso, x + 6, y + (alturaAviso - fm.getHeight()) / 2 + fm.getAscent());
-            g2.dispose();
         }
     }
 

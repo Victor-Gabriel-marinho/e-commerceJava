@@ -3,7 +3,7 @@
     "id": "6f74d7fe-9159-49e1-a9a5-95f5991f5ffe",
     "nome": "Pão francês",
     "preco": 0.9,
-    "quantidadeEmEstoque": 149
+    "quantidadeEmEstoque": 150
   },
   {
     "id": "e001cebb-2950-4d6f-8e93-2647bff44f1b",
@@ -75,18 +75,12 @@
     "id": "4f51d0be-c915-4d97-b2b5-d91c8d1e209d",
     "nome": "Queijo minas (200g)",
     "preco": 14.9,
-    "quantidadeEmEstoque": 30
+    "quantidadeEmEstoque": 12
   },
   {
     "id": "c6c7997b-b52e-4c0a-9145-1ef981017650",
     "nome": "Torta de limão (fatia)",
     "preco": 10.0,
     "quantidadeEmEstoque": 0
-  },
-  {
-    "id": "34406b77-2635-4cda-bea7-dcf8d7b4e444",
-    "nome": "celular",
-    "preco": 1000.0,
-    "quantidadeEmEstoque": 9
   }
 ]

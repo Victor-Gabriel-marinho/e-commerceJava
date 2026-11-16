@@ -24,7 +24,7 @@ public class DialogoProduto extends JDialog {
         JPanel raiz = new JPanel(new BorderLayout(28, 0));
         raiz.setBackground(Color.WHITE);
         raiz.setBorder(new EmptyBorder(28, 28, 28, 28));
-        raiz.add(new Componentes.Miniatura(produto.getNome(), 280, 280, 14), BorderLayout.WEST);
+        raiz.add(new Componentes.Miniatura(produto, 280, 280, 14), BorderLayout.WEST);
 
         JPanel info = new JPanel();
         info.setOpaque(false);

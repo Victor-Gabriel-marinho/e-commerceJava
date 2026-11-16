@@ -131,7 +131,7 @@ public class PainelCarrinho extends JScrollPane {
 
         c.gridx = 0;
         c.insets = new Insets(0, 0, 0, 16);
-        linha.add(new Componentes.Miniatura(item.getProduto().getNome(), 76, 76, 10), c);
+        linha.add(new Componentes.Miniatura(item.getProduto(), 76, 76, 10), c);
 
         // nome + unitário + remover
         JPanel info = new JPanel();

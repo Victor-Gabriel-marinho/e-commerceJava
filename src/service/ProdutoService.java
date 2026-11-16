@@ -60,6 +60,11 @@ public class ProdutoService {
         produto.setQuantidadeEmEstoque(estoque);
     }
 
+    /** Associa (ou, com null, remove) a imagem de um produto. */
+    public void definirImagem(String id, String caminhoImagem) {
+        buscarPorId(id).setImagem(caminhoImagem);
+    }
+
     // ---------------------------------------------------------------- DELETE
     public void remover(String id) {
         Produto produto = buscarPorId(id);

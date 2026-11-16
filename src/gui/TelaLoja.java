@@ -20,8 +20,8 @@ public class TelaLoja extends JFrame {
 
     private static final String LOJA = "loja", CARRINHO = "carrinho", HISTORICO = "historico";
 
-    /** Nome exibido no cabeçalho e no título da janela (troque aqui pelo nome da sua padaria). */
-    private static final String NOME_LOJA = "Padaria";
+    /** Nome exibido no cabeçalho e no título da janela (troque aqui para mudar o nome da loja). */
+    private static final String NOME_LOJA = "e-commerce";
 
     private final ProdutoService produtoService;
     private final CompraService compraService;
